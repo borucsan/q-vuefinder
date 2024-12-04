@@ -72,7 +72,7 @@ const examples = {
 const request = {
   // ----- CHANGE ME! -----
   // [REQUIRED] Url for development server endpoint
-  baseUrl: "http://vuefinder.ozdemir.be.test/vuefinder",
+  baseUrl: "http://localhost:3000/files",
   // ----- CHANGE ME! -----
 
   // Additional headers & params & body

@@ -4,7 +4,7 @@ import {buildRequester} from "./utils/ajax.js";
 import {useStorage} from "./composables/useStorage.js";
 import {useI18n} from "./composables/useI18n.js";
 import {FEATURE_ALL_NAMES, FEATURES} from "./features.js";
-import {version} from './../package.json';
+import pck from '../package.json';
 import { format as filesizeDefault, metricFormat as filesizeMetric } from './utils/filesize.js'
 import useTheme from './composables/useTheme.js';
 import useModal from "./composables/useModal.js";
@@ -18,6 +18,7 @@ export default (props, options) => {
     const theme = useTheme(storage, props.theme);
     const supportedLocales = options.i18n;
     const initialLang = props.locale ?? options.locale;
+    const icons = options.icons;
 
     const setFeatures = (features) => {
         if (Array.isArray(features)) {
@@ -41,7 +42,7 @@ export default (props, options) => {
         * */
 
         // app version
-        version: version,
+        version: pck?.version,
         // root element
         root: null,
         // app id
@@ -74,6 +75,10 @@ export default (props, options) => {
         selectButton: props.selectButton,
         // max file size
         maxFileSize: props.maxFileSize,
+        //icon component
+        iconComponent: options.iconComponent,
+        // icons
+        icons: icons,
 
         /**
         * Settings

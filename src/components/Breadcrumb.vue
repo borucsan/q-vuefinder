@@ -109,7 +109,7 @@ const ds = app.dragSelect;
 const {setStore} = app.storage;
 
 // dynamic shown items calculation for breadcrumbs
-const breadcrumbContainer = ref(null);
+const breadcrumbContainer = ref();
 const breadcrumbContainerWidth = useDebouncedRef(0,100);
 watch(breadcrumbContainerWidth, newQuery => {
   const children = breadcrumbContainer.value.children;
@@ -141,8 +141,11 @@ const updateContainerWidth = () => {
 let resizeObserver = ref(null);
 
 onMounted(() => {
+    console.debug('Breadcrumb mounted', breadcrumbContainer.value);
     resizeObserver.value = new ResizeObserver(updateContainerWidth);
-    resizeObserver.value.observe(breadcrumbContainer.value);
+    if(breadcrumbContainer.value) {
+        resizeObserver.value.observe(breadcrumbContainer.value);
+    }
 });
 onUnmounted(() => {
     resizeObserver.value.disconnect();

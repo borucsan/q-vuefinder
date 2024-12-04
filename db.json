@@ -1,0 +1,31 @@
+{
+  "files": {
+    "adapter": "local",
+    "storages": ["local", "media"],
+    "dirname": "local://",
+    "files": [
+      {
+        "type": "dir",
+        "path": "local://public",
+        "visibility": "public",
+        "last_modified": 1728836170,
+        "extra_metadata": [],
+        "basename": "public",
+        "extension": "",
+        "storage": "local"
+      },
+      {
+        "type": "file",
+        "path": "local://.gitignore",
+        "file_size": 31,
+        "visibility": "public",
+        "last_modified": 1728836170,
+        "mime_type": null,
+        "extra_metadata": [],
+        "basename": ".gitignore",
+        "extension": "gitignore",
+        "storage": "local"
+      }
+    ]
+  }
+}

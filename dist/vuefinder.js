@@ -463,7 +463,7 @@ const ys = (t, e, n) => {
   return {
     D: {
       x: d,
-      y: u
+      y: v
     },
     M: {
       x: i,
@@ -1385,7 +1385,7 @@ const _a = () => {
     return je(F, q), y(), Z(Ve, M);
   }, A, () => ({
     gn: h,
-    bn: u
+    bn: v
   }), {
     wn: f,
     yn: D
@@ -1708,6 +1708,10 @@ const Oa = (t, e) => {
     selectButton: t.selectButton,
     // max file size
     maxFileSize: t.maxFileSize,
+    //icon component
+    iconComponent: e.iconComponent,
+    // icons
+    icons: l,
     /**
     * Settings
     * */
@@ -1720,7 +1724,7 @@ const Oa = (t, e) => {
     // show large icons in list view
     compactListView: n.getStore("compact-list-view", !0),
     // persist state
-    persist: u,
+    persist: p,
     // show thumbnails
     showThumbnails: n.getStore("show-thumbnails", t.showThumbnails),
     // type of progress indicator
@@ -2065,7 +2069,7 @@ const mt = /* @__PURE__ */ Ma(Ra, [["render", Ua]]), Na = { class: "vuefinder__m
                         Q(g(r(s)("Show thumbnails")) + " ", 1),
                         j(mt, {
                           class: "ms-3",
-                          on: "vf-show-thumbnails-saved"
+                          on: "vf-metric-units-saved"
                         }, {
                           default: ee(() => [
                             Q(g(r(s)("Saved.")), 1)
@@ -2795,7 +2799,7 @@ const _i = { class: "vuefinder__upload-modal__content" }, fi = {
           params: { q: "index", adapter: e.fs.adapter, path: e.fs.data.dirname },
           noCloseModal: !0
         });
-      }), u.value.addEventListener("click", () => {
+      }), v.value.addEventListener("click", () => {
         d.value.click();
       }), f.value.addEventListener("click", () => {
         i.value.click();
@@ -2872,7 +2876,7 @@ const _i = { class: "vuefinder__upload-modal__content" }, fi = {
             }, [
               a("button", {
                 ref_key: "pickFiles",
-                ref: u,
+                ref: v,
                 type: "button",
                 class: "vf-btn vf-btn-secondary"
               }, g(r(n)("Select Files")), 513),
@@ -3607,6 +3611,64 @@ const _i = { class: "vuefinder__upload-modal__content" }, fi = {
             onDrop: y[6] || (y[6] = (w) => f(w, -1)),
             onClick: y[7] || (y[7] = (w) => r(e).emitter.emit("vf-fetch", { params: { q: "index", adapter: r(e).fs.adapter } }))
           })
+        ], 8, Jc)) : (f(), b("span", {
+          key: 0,
+          title: r(n)("Refresh")
+        }, [
+          z(Wc, {
+            icon: "refresh",
+            onClick: _
+          })
+        ], 8, Zc)),
+        ve(a("div", {
+          onClick: et(k, ["self"]),
+          class: "group vuefinder__breadcrumb__search-container"
+        }, [
+          a("div", null, [
+            z(I, {
+              onDragover: w[4] || (w[4] = (P) => u(P)),
+              onDragleave: w[5] || (w[5] = (P) => m(P)),
+              onDrop: w[6] || (w[6] = (P) => p(P, -1)),
+              onClick: w[7] || (w[7] = (P) => r(e).emitter.emit("vf-fetch", { params: { q: "index", adapter: r(e).fs.adapter } }))
+            })
+          ]),
+          a("div", Qc, [
+            r(e).fs.hiddenBreadcrumbs.length ? ve((f(), b("div", ed, [
+              w[13] || (w[13] = a("div", { class: "vuefinder__breadcrumb__separator" }, "/", -1)),
+              a("div", td, [
+                a("span", {
+                  onDragenter: w[8] || (w[8] = (P) => r(e).fs.toggleHiddenBreadcrumbs(!0)),
+                  onClick: w[9] || (w[9] = (P) => r(e).fs.toggleHiddenBreadcrumbs()),
+                  class: "vuefinder__breadcrumb__hidden-toggle"
+                }, [
+                  z(S, { class: "vuefinder__breadcrumb__hidden-toggle-icon" })
+                ], 32)
+              ])
+            ])), [
+              [$, y]
+            ]) : G("", !0)
+          ]),
+          a("div", {
+            ref_key: "breadcrumbContainer",
+            ref: c,
+            class: "vuefinder__breadcrumb__visible-list",
+            onClick: et(k, ["self"])
+          }, [
+            (f(!0), b(ye, null, ke(r(e).fs.breadcrumbs, (P, ae) => (f(), b("div", { key: ae }, [
+              w[14] || (w[14] = a("span", { class: "vuefinder__breadcrumb__separator" }, "/", -1)),
+              a("span", {
+                onDragover: (N) => ae === r(e).fs.breadcrumbs.length - 1 || u(N),
+                onDragleave: (N) => ae === r(e).fs.breadcrumbs.length - 1 || m(N),
+                onDrop: (N) => ae === r(e).fs.breadcrumbs.length - 1 || p(N, ae),
+                class: "vuefinder__breadcrumb__item",
+                title: P.basename,
+                onClick: (N) => r(e).emitter.emit("vf-fetch", { params: { q: "index", adapter: r(e).fs.adapter, path: P.path } })
+              }, g(P.name), 41, nd)
+            ]))), 128))
+          ], 512),
+          r(e).loadingIndicator === "circular" && r(e).fs.loading ? (f(), Y(H, { key: 0 })) : G("", !0)
+        ], 512), [
+          [Be, !r(e).fs.searchMode]
         ]),
         a("div", wc, [
           r(e).fs.hiddenBreadcrumbs.length ? _e((p(), b("div", Sc, [
@@ -3806,7 +3868,7 @@ const _i = { class: "vuefinder__upload-modal__content" }, fi = {
       u.requester.send({
         url: "",
         method: "get",
-        params: { q: "preview", adapter: u.modal.data.adapter, path: u.modal.data.item.path },
+        params: { q: "preview", adapter: v.modal.data.adapter, path: v.modal.data.item.path },
         responseType: "text"
       }).then((v) => {
         o.value = v, n("success");
@@ -3820,8 +3882,8 @@ const _i = { class: "vuefinder__upload-modal__content" }, fi = {
         method: "post",
         params: {
           q: "save",
-          adapter: u.modal.data.adapter,
-          path: u.modal.data.item.path
+          adapter: v.modal.data.adapter,
+          path: v.modal.data.item.path
         },
         body: {
           content: s.value
@@ -5160,7 +5222,7 @@ const De = {
     const i = (_) => {
       Object.assign(s.fs.data, _), d.clearSelection(), d.refreshSelection();
     };
-    let u;
+    let v;
     s.emitter.on("vf-fetch-abort", () => {
       u.abort(), s.fs.loading = !1;
     }), s.emitter.on("vf-fetch", ({ params: _, body: m = null, onSuccess: v = null, onError: h = null, noCloseModal: k = !1 }) => {
