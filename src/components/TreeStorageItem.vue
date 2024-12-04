@@ -26,7 +26,7 @@
 <script setup>
 import {inject, ref} from 'vue';
 
-import StorageSVG from "./icons/storage.svg";
+/*  import StorageSVG from "./icons/storage.svg"; */
 import FolderLoaderIndicator from "./FolderLoaderIndicator.vue";
 import TreeSubfolderList from "./TreeSubfolderList.vue";
 

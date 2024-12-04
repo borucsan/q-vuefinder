@@ -19,7 +19,7 @@
     </span>
 
     <span :title="t('Refresh')" v-if="!app.fs.loading">
-      <RefreshSVG @click="handleRefresh"/>
+      <Icon icon="refresh" @click="handleRefresh"/>
     </span>
     <span :title="t('Cancel')" v-else>
       <CloseSVG @click="app.emitter.emit('vf-fetch-abort')"/>
@@ -100,16 +100,17 @@ import {inject, nextTick, onMounted, onUnmounted, ref, watch} from 'vue';
 import useDebouncedRef from '../composables/useDebouncedRef.js';
 import {FEATURES} from "../features.js";
 import ModalMove from "./modals/ModalMove.vue";
-import RefreshSVG from "./icons/refresh.svg";
-import GoUpSVG from "./icons/go_up.svg";
-import CloseSVG from "./icons/close.svg";
-import HomeSVG from "./icons/home.svg";
-import SearchSVG from "./icons/search.svg";
-import LoadingSVG from "./icons/loading.svg";
-import ExitSVG from "./icons/exit.svg";
-import FolderSVG from './icons/folder.svg';
-import ListTreeSVG from './icons/list_tree.svg';
-import DotsSVG from './icons/dots.svg';
+import Icon from "./Icon.vue";
+  import RefreshSVG from "./icons/refresh.svg"; 
+/*  import GoUpSVG from "./icons/go_up.svg"; */
+/*  import CloseSVG from "./icons/close.svg"; */
+/*  import HomeSVG from "./icons/home.svg"; */
+/*  import SearchSVG from "./icons/search.svg"; */
+/*  import LoadingSVG from "./icons/loading.svg"; */
+/*  import ExitSVG from "./icons/exit.svg"; */
+/*  import FolderSVG from './icons/folder.svg'; */
+/*  import ListTreeSVG from './icons/list_tree.svg'; */
+/*  import DotsSVG from './icons/dots.svg'; */
 
 const app = inject('ServiceContainer');
 const {t} = app.i18n;
@@ -117,7 +118,7 @@ const ds = app.dragSelect;
 const {setStore} = app.storage;
 
 // dynamic shown items calculation for breadcrumbs
-const breadcrumbContainer = ref(null);
+const breadcrumbContainer = ref();
 const breadcrumbContainerWidth = useDebouncedRef(0,100);
 watch(breadcrumbContainerWidth, newQuery => {
   const children = breadcrumbContainer.value.children;
@@ -149,8 +150,11 @@ const updateContainerWidth = () => {
 let resizeObserver = ref(null);
 
 onMounted(() => {
+    console.debug('Breadcrumb mounted', breadcrumbContainer.value);
     resizeObserver.value = new ResizeObserver(updateContainerWidth);
-    resizeObserver.value.observe(breadcrumbContainer.value);
+    if(breadcrumbContainer.value) {
+        resizeObserver.value.observe(breadcrumbContainer.value);
+    }
 });
 onUnmounted(() => {
     resizeObserver.value.disconnect();

@@ -11,6 +11,13 @@ export default {
         options.i18n = options.i18n ?? {};
         let [firstLanguage] = Object.keys(options.i18n)
         options.locale = options.locale ?? firstLanguage ?? 'en';
+        options.iconComponent = options.iconComponent ?? {
+            tag: 'svg',
+            props: {},
+        };
+        options.icons = {
+            refresh: options.icons?.refresh ?? import(`./components/icons/refresh.svg`),
+        }
 
         // unique id for the app options
         app.provide('VueFinderOptions', options);

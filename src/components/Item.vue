@@ -21,7 +21,7 @@
 import {inject} from 'vue';
 import ModalPreview from "./modals/ModalPreview.vue";
 import ModalMove from "./modals/ModalMove.vue";
-import PinSVG from "./icons/pin.svg";
+/*  import PinSVG from "./icons/pin.svg"; */
 
 const app = inject('ServiceContainer');
 const ds = app.dragSelect;

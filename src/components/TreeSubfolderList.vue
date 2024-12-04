@@ -41,8 +41,8 @@
 <script setup>
 import {computed, inject, onMounted, ref} from 'vue';
 
-import FolderSVG from "./icons/folder.svg";
-import OpenFolderSVG from "./icons/open_folder.svg";
+/*  import FolderSVG from "./icons/folder.svg"; */
+/*  import OpenFolderSVG from "./icons/open_folder.svg"; */
 import FolderLoaderIndicator from "./FolderLoaderIndicator.vue";
 import {OverlayScrollbars} from "overlayscrollbars";
 
