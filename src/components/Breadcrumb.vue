@@ -38,7 +38,7 @@
         <div v-if="app.fs.hiddenBreadcrumbs.length" class="vuefinder__breadcrumb__hidden-list" v-click-outside="handleClickOutside">
           <div class="vuefinder__breadcrumb__separator">/</div>
           <div class="relative">
-            <span 
+            <span
             @dragenter="app.fs.toggleHiddenBreadcrumbs(true)"
             @click="app.fs.toggleHiddenBreadcrumbs()"
                    class="vuefinder__breadcrumb__hidden-toggle">
@@ -141,7 +141,6 @@ const updateContainerWidth = () => {
 let resizeObserver = ref(null);
 
 onMounted(() => {
-    console.debug('Breadcrumb mounted', breadcrumbContainer.value);
     resizeObserver.value = new ResizeObserver(updateContainerWidth);
     if(breadcrumbContainer.value) {
         resizeObserver.value.observe(breadcrumbContainer.value);
