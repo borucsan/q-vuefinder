@@ -20,6 +20,6 @@ const properties = computed(() => {
 });
 
 const component = computed(() => {
-    return defineAsyncComponent(() => icons.refresh);
+    return defineAsyncComponent(() => icons[props.icon]);
 })
 </script>
