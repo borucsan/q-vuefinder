@@ -1,7 +1,7 @@
 {
   "files": {
     "adapter": "local",
-    "storages": ["local", "media"],
+    "storages": ["local"],
     "dirname": "local://",
     "files": [
       {
@@ -16,14 +16,14 @@
       },
       {
         "type": "file",
-        "path": "local://.gitignore",
+        "path": "local://image.jpg",
         "file_size": 31,
         "visibility": "public",
         "last_modified": 1728836170,
         "mime_type": null,
         "extra_metadata": [],
-        "basename": ".gitignore",
-        "extension": "gitignore",
+        "basename": "image",
+        "extension": "jpg",
         "storage": "local"
       }
     ]

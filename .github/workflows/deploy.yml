@@ -1,0 +1,26 @@
+name: Deploy npm package
+on:
+    push:
+      branches: main
+jobs:
+    publish:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: Setup Node.js environment
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        - run: |
+            corepack enable &&
+            corepack install # use the in-repo yarn version
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            cache: "yarn"
+        - run: yarn install --frozen-lockfile --network-timeout 1000000000
+        - name: build
+          run: yarn run generate
+        - uses: JS-DevTools/npm-publish@v3
+          with:
+            token: ${{ secrets.NPM_TOKEN }}
