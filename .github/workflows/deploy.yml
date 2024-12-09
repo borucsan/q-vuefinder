@@ -20,7 +20,7 @@ jobs:
             cache: "yarn"
         - run: yarn install --frozen-lockfile --network-timeout 1000000000
         - name: build
-          run: yarn run generate
+          run: yarn run build
         - uses: JS-DevTools/npm-publish@v3
           with:
             token: ${{ secrets.NPM_TOKEN }}
