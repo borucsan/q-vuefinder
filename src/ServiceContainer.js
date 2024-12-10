@@ -18,7 +18,6 @@ export default (props, options) => {
     const theme = useTheme(storage, props.theme);
     const supportedLocales = options.i18n;
     const initialLang = props.locale ?? options.locale;
-    const icons = options.icons;
 
     const setFeatures = (features) => {
         if (Array.isArray(features)) {

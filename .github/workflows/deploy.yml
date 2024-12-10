@@ -11,18 +11,10 @@ jobs:
             ref: quasar
         - name: Setup Node.js environment
           uses: actions/setup-node@v4
-          with:
-            node-version: 20
-        - run: |
-            corepack enable &&
-            corepack install # use the in-repo yarn version
         - uses: actions/setup-node@v4
-          with:
-            node-version: 20
-            cache: "yarn"
-        - run: yarn install --frozen-lockfile --network-timeout 1000000000
+        - run: npm ci
         - name: build
-          run: yarn run build
+          run: npm run build
         - uses: JS-DevTools/npm-publish@v3
           with:
             token: ${{ secrets.NPM_TOKEN }}

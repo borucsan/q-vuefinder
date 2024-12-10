@@ -1,14 +1,8 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import VueFinder from '../src/index.js'
-import { Quasar } from 'quasar'
 
 const app = createApp(App);
-
-app.use(Quasar, {
-    plugins: {}, // import Quasar plugins and add here
-  });
-  
 app.use(VueFinder,
     {
         // you can set the default locale, if you don't set the locale key, it will be the first locale in the i18n object (en in this case)
