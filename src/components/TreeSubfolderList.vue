@@ -18,8 +18,8 @@
           @click="app.emitter.emit('vf-fetch', {params:{q: 'index', adapter: props.adapter, path:item.path}})"
         >
           <div class="vuefinder__treesubfolderlist__item-icon">
-            <OpenFolderSVG v-if="app.fs.path === item.path" />
-            <FolderSVG v-else />
+            <Icon icon="open_folder" v-if="app.fs.path === item.path" />
+            <Icon icon="folder" v-else />
           </div>
           <div
             class="vuefinder__treesubfolderlist__item-text"
@@ -40,9 +40,7 @@
 
 <script setup>
 import {computed, inject, onMounted, ref} from 'vue';
-
-import FolderSVG from "./icons/folder.svg";
-import OpenFolderSVG from "./icons/open_folder.svg";
+import Icon from './Icon.vue';
 import FolderLoaderIndicator from "./FolderLoaderIndicator.vue";
 import {OverlayScrollbars} from "overlayscrollbars";
 

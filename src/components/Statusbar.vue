@@ -3,7 +3,7 @@
     <div class="vuefinder__status-bar__storage">
       <div class="vuefinder__status-bar__storage-container" :title="t('Storage')">
         <div class="vuefinder__status-bar__storage-icon">
-          <StorageSVG/>
+          <Icon icon="storage" />
         </div>
         <select v-model="app.fs.adapter" @change="handleStorageSelect"
                 class="vuefinder__status-bar__storage-select" tabindex="-1">
@@ -23,7 +23,7 @@
               :disabled="!isSelectButtonActive"
               v-if="app.selectButton.active" @click="app.selectButton.click(ds.getSelected(), $event)">{{ t("Select") }}</button>
       <span class="vuefinder__status-bar__about" :title="t('About')" @click="app.modal.open(ModalAbout)">
-        <AboutSVG />
+        <Icon icon="about" />
       </span>
     </div>
   </div>
@@ -32,8 +32,7 @@
 <script setup>
 import {computed, inject, ref} from 'vue';
 import ModalAbout from "./modals/ModalAbout.vue";
-import StorageSVG from "./icons/storage.svg";
-import AboutSVG from "./icons/about.svg";
+import Icon from './Icon.vue';
 
 const app = inject('ServiceContainer');
 const {t} = app.i18n;

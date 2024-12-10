@@ -1,10 +1,10 @@
 <template>
   <div class="vuefinder__folder-loader-indicator">
 
-    <LoadingSVG v-if="loading" class="vuefinder__folder-loader-indicator--loading" />
+    <Icon icon="loading"  v-if="loading" class="vuefinder__folder-loader-indicator--loading" />
     <div class="vuefinder__folder-loader-indicator--icon" v-else>
-      <SquareMinusSVG class="vuefinder__folder-loader-indicator--minus" v-if="opened && getLoadedFolder()?.folders.length" />
-      <SquarePlusSVG class="vuefinder__folder-loader-indicator--plus" v-if="!opened" />
+      <Icon icon="minus" class="vuefinder__folder-loader-indicator--minus" v-if="opened && getLoadedFolder()?.folders.length" />
+      <Icon icon="plus" class="vuefinder__folder-loader-indicator--plus" v-if="!opened" />
     </div>
 
   </div>
@@ -13,9 +13,7 @@
 <script setup>
 import {ref, inject, watch} from 'vue';
 
-import SquarePlusSVG from "./icons/plus.svg";
-import SquareMinusSVG from "./icons/minus.svg";
-import LoadingSVG from "./icons/loading.svg";
+import Icon from './Icon.vue';
 import upsert from "../utils/upsert";
 
 const props = defineProps({

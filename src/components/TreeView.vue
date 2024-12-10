@@ -15,7 +15,7 @@
           class="vuefinder__treeview__pinned-toggle"
         >
           <div class="vuefinder__treeview__pinned-label">
-            <PinSVG class="vuefinder__treeview__pin-icon" />
+            <Icon icon="pin" class="vuefinder__treeview__pin-icon" />
             <div class="vuefinder__treeview__pin-text text-nowrap">{{ t('Pinned Folders') }}</div>
           </div>
           <FolderIndicator v-model="pinnedFoldersOpened" />
@@ -26,8 +26,8 @@
               class="vuefinder__treeview__pinned-folder"
               @click="app.emitter.emit('vf-fetch', {params:{q: 'index', adapter: favorite.storage, path:favorite.path}})"
             >
-              <FolderSVG class="vuefinder__treeview__folder-icon" v-if="app.fs.path !== favorite.path" />
-              <OpenFolderSVG class="vuefinder__treeview__open-folder-icon" v-if="app.fs.path === favorite.path" />
+              <Icon icon="folder" class="vuefinder__treeview__folder-icon" v-if="app.fs.path !== favorite.path" />
+              <Icon icon="open_folder" class="vuefinder__treeview__open-folder-icon" v-if="app.fs.path === favorite.path" />
               <div
                 :title="favorite.path"
                 class="vuefinder__treeview__folder-name text-nowrap"
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="vuefinder__treeview__remove-favorite" @click="removeFavorite(favorite)">
-              <XBoxSVG class="vuefinder__treeview__remove-icon" />
+              <Icon icon="x_box" class="vuefinder__treeview__remove-icon" />
             </div>
           </li>
           <li v-if="!app.pinnedFolders.length">
@@ -62,15 +62,12 @@
 
 <script setup>
 import {inject, onMounted, ref, watch} from 'vue';
-import FolderSVG from './icons/folder.svg';
-import OpenFolderSVG from './icons/open_folder.svg';
-import PinSVG from "./icons/pin.svg";
-import XBoxSVG from "./icons/x_box.svg";
 
 import {OverlayScrollbars} from 'overlayscrollbars';
 import TreeStorageItem from "./TreeStorageItem.vue";
 import upsert from "../utils/upsert";
 import FolderIndicator from "./FolderIndicator.vue";
+import Icon from './Icon.vue';
 
 const app = inject('ServiceContainer');
 const {t} = app.i18n;

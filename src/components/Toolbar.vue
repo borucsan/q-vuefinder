@@ -7,7 +7,7 @@
         v-if="app.features.includes(FEATURES.NEW_FOLDER)"
         @click="app.modal.open(ModalNewFolder, {items: ds.getSelected()})"
       >
-        <NewFolderSVG />
+        <Icon icon="new_folder" />
       </div>
 
       <div
@@ -16,7 +16,7 @@
         v-if="app.features.includes(FEATURES.NEW_FILE)"
         @click="app.modal.open(ModalNewFile, {items: ds.getSelected()})"
       >
-        <NewFileSVG />
+        <Icon icon="new_file" />
       </div>
 
       <div
@@ -25,7 +25,7 @@
         v-if="app.features.includes(FEATURES.RENAME)"
         @click="(ds.getCount() !== 1) || app.modal.open(ModalRename, {items: ds.getSelected()})"
       >
-        <RenameSVG :class="(ds.getCount() === 1) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="rename" :class="(ds.getCount() === 1) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
       </div>
 
       <div
@@ -34,7 +34,7 @@
         v-if="app.features.includes(FEATURES.DELETE)"
         @click="(!ds.getCount()) || app.modal.open(ModalDelete, {items: ds.getSelected()})"
       >
-        <DeleteSVG :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="delete" :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
       </div>
 
       <div
@@ -43,7 +43,7 @@
         v-if="app.features.includes(FEATURES.UPLOAD)"
         @click="app.modal.open(ModalUpload, {items: ds.getSelected()})"
       >
-        <UploadSVG />
+        <Icon icon="upload" />
       </div>
 
       <div
@@ -52,7 +52,7 @@
         :title="t('Unarchive')"
         @click="(!ds.getCount()) || app.modal.open(ModalUnarchive, {items: ds.getSelected()})"
       >
-        <UnarchiveSVG :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="unarchive" :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
       </div>
 
       <div
@@ -61,7 +61,7 @@
         :title="t('Archive')"
         @click="(!ds.getCount()) || app.modal.open(ModalArchive, {items: ds.getSelected()})"
       >
-        <ArchiveSVG :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="archive" :class="(ds.getCount()) ? 'vf-toolbar-icon' : 'vf-toolbar-icon-disabled'" />
       </div>
     </div>
 
@@ -70,7 +70,7 @@
         {{ t('Search results for') }}
         <span class="dark:bg-gray-700 bg-gray-200 text-xs px-2 py-1 rounded">{{ searchQuery }}</span>
       </div>
-      <LoadingSVG v-if="app.loadingIndicator === 'circular' && app.fs.loading" />
+      <Icon icon="loading" v-if="app.loadingIndicator === 'circular' && app.fs.loading" />
     </div>
 
     <div class="vuefinder__toolbar__controls">
@@ -80,8 +80,8 @@
         class="mx-1.5"
         :title="t('Toggle Full Screen')"
       >
-        <MinimizeSVG v-if="app.fullScreen" />
-        <FullscreenSVG v-else />
+        <Icon icon="minimize" v-if="app.fullScreen" />
+        <Icon icon="full_screen" v-else />
       </div>
 
       <div
@@ -89,8 +89,8 @@
         :title="t('Change View')"
         @click="searchQuery.length || toggleView()"
       >
-        <GridViewSVG v-if="app.view === 'grid'" class="vf-toolbar-icon" :class="(!searchQuery.length) ? '' : 'vf-toolbar-icon-disabled'" />
-        <ListViewSVG v-if="app.view === 'list'" class="vf-toolbar-icon" :class="(!searchQuery.length) ? '' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="grid_view" v-if="app.view === 'grid'" class="vf-toolbar-icon" :class="(!searchQuery.length) ? '' : 'vf-toolbar-icon-disabled'" />
+        <Icon icon="list_view" v-if="app.view === 'list'" class="vf-toolbar-icon" :class="(!searchQuery.length) ? '' : 'vf-toolbar-icon-disabled'" />
       </div>
     </div>
   </div>
@@ -106,18 +106,7 @@ import ModalDelete from "./modals/ModalDelete.vue";
 import ModalUpload from "./modals/ModalUpload.vue";
 import ModalUnarchive from "./modals/ModalUnarchive.vue";
 import ModalArchive from "./modals/ModalArchive.vue";
-import NewFolderSVG from "./icons/new_folder.svg";
-import NewFileSVG from "./icons/new_file.svg";
-import RenameSVG from "./icons/rename.svg";
-import DeleteSVG from "./icons/delete.svg";
-import UploadSVG from "./icons/upload.svg";
-import ArchiveSVG from "./icons/archive.svg";
-import UnarchiveSVG from "./icons/unarchive.svg";
-import LoadingSVG from "./icons/loading.svg";
-import FullscreenSVG from "./icons/full_screen.svg";
-import MinimizeSVG from "./icons/minimize.svg";
-import GridViewSVG from "./icons/grid_view.svg";
-import ListViewSVG from "./icons/list_view.svg";
+import Icon from './Icon.vue';
 
 const app = inject('ServiceContainer');
 const {setStore} = app.storage;

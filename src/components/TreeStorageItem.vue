@@ -11,7 +11,7 @@
         class="vuefinder__treestorageitem__icon"
         :class="storage === app.fs.adapter ? 'vuefinder__treestorageitem__icon--active' : ''"
       >
-        <StorageSVG />
+        <Icon icon="storage" />
       </div>
       <div>{{ storage }}</div>
     </div>
@@ -26,7 +26,7 @@
 <script setup>
 import {inject, ref} from 'vue';
 
-import StorageSVG from "./icons/storage.svg";
+import Icon from './Icon.vue';
 import FolderLoaderIndicator from "./FolderLoaderIndicator.vue";
 import TreeSubfolderList from "./TreeSubfolderList.vue";
 

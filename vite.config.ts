@@ -45,7 +45,11 @@ export default defineConfig({
                 '@uppy/xhr-upload',
             ],
             output: {
-
+                    manualChunks: (id) => {
+                      if(id.match(/\/icons\/[^/]+\.svg/)) {
+                        return 'icons'
+                      }
+                    },
                 // Provide global variables to use in the UMD build
                 // for externalized deps
                 globals: {

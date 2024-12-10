@@ -33,6 +33,8 @@ export default (props, options) => {
 
     const dragSelect = useDragSelect();
 
+    const icons = options.icons;
+
     return reactive({
         /** 
         * Core properties
@@ -93,6 +95,10 @@ export default (props, options) => {
         loadingIndicator: props.loadingIndicator,
         // possible items of the context menu
         contextMenuItems: props.contextMenuItems,
+        // icon component
+        iconComponent: options.iconComponent,
+        // icons
+        icons: icons,
 
         // file system
         fs: useData(adapter, path),

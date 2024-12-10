@@ -1,12 +1,12 @@
 <template>
   <div class="vuefinder__drag-item__container">
-    <DragSVG />
+    <Icon icon="drag" />
     <div class="vuefinder__drag-item__count">{{ props.count }}</div>
   </div>
 </template>
 
 <script setup>
-import DragSVG from './icons/drag.svg';
+import Icon from './Icon.vue';
 const props = defineProps({
   count: {
     type: Number,

@@ -1,7 +1,7 @@
 <template>
   <div class="vuefinder__breadcrumb__container">
     <span :title="t('Toggle Tree View')">
-      <ListTreeSVG
+       <Icon icon="list_tree"
           @click="toggleTreeView"
           class="vuefinder__breadcrumb__toggle-tree"
           :class="app.showTreeView ? 'vuefinder__breadcrumb__toggle-tree--active' : ''"
@@ -9,7 +9,7 @@
     </span>
 
     <span :title="t('Go up a directory')">
-      <GoUpSVG
+       <Icon icon="go_up"
           @dragover="handleDragOver($event)"
           @dragleave="handleDragLeave($event)"
           @drop="handleDropZone($event)"
@@ -19,15 +19,15 @@
     </span>
 
     <span :title="t('Refresh')" v-if="!app.fs.loading">
-      <RefreshSVG @click="handleRefresh"/>
+      <Icon icon="refresh" @click="handleRefresh"/>
     </span>
     <span :title="t('Cancel')" v-else>
-      <CloseSVG @click="app.emitter.emit('vf-fetch-abort')"/>
+      <Icon icon="close" @click="app.emitter.emit('vf-fetch-abort')"/>
     </span>
 
     <div v-show="!app.fs.searchMode" @click.self="enterSearchMode" class="group vuefinder__breadcrumb__search-container">
       <div>
-        <HomeSVG
+        <Icon icon="home"
           @dragover="handleDragOver($event)"
           @dragleave="handleDragLeave($event)"
           @drop="handleDropZone($event, -1)"
@@ -42,7 +42,7 @@
             @dragenter="app.fs.toggleHiddenBreadcrumbs(true)"
             @click="app.fs.toggleHiddenBreadcrumbs()"
                    class="vuefinder__breadcrumb__hidden-toggle">
-              <DotsSVG class="vuefinder__breadcrumb__hidden-toggle-icon" />
+              <Icon icon="dots" class="vuefinder__breadcrumb__hidden-toggle-icon" />
             </span>
           </div>
         </div>
@@ -61,11 +61,11 @@
         </div>
       </div>
 
-      <LoadingSVG v-if="app.loadingIndicator === 'circular' && app.fs.loading"/>
+      <Icon icon="loading" v-if="app.loadingIndicator === 'circular' && app.fs.loading"/>
     </div>
     <div v-show="app.fs.searchMode" class="vuefinder__breadcrumb__search-mode">
       <div>
-        <SearchSVG />
+        <Icon icon="search" />
       </div>
       <input
           ref="searchInput"
@@ -75,7 +75,7 @@
           :placeholder="t('Search anything..')"
           class="vuefinder__breadcrumb__search-input"
           type="text">
-      <ExitSVG @click="exitSearchMode"/>
+      <Icon icon="exit" @click="exitSearchMode"/>
     </div>
 
     <div v-show="app.fs.showHiddenBreadcrumbs"
@@ -88,7 +88,7 @@
           @click="handleHiddenBreadcrumbsClick(item)"
           class="vuefinder__breadcrumb__hidden-item">
         <div class="vuefinder__breadcrumb__hidden-item-content">
-          <span><FolderSVG class="vuefinder__breadcrumb__hidden-item-icon" /></span> <span class="vuefinder__breadcrumb__hidden-item-text">{{ item.name}}</span>
+          <span><Icon icon="folder" class="vuefinder__breadcrumb__hidden-item-icon" /></span> <span class="vuefinder__breadcrumb__hidden-item-text">{{ item.name}}</span>
         </div>
       </div>
     </div>
@@ -100,16 +100,8 @@ import {inject, nextTick, onMounted, onUnmounted, ref, watch} from 'vue';
 import useDebouncedRef from '../composables/useDebouncedRef.js';
 import {FEATURES} from "../features.js";
 import ModalMove from "./modals/ModalMove.vue";
-import RefreshSVG from "./icons/refresh.svg";
-import GoUpSVG from "./icons/go_up.svg";
-import CloseSVG from "./icons/close.svg";
-import HomeSVG from "./icons/home.svg";
-import SearchSVG from "./icons/search.svg";
-import LoadingSVG from "./icons/loading.svg";
-import ExitSVG from "./icons/exit.svg";
-import FolderSVG from './icons/folder.svg';
-import ListTreeSVG from './icons/list_tree.svg';
-import DotsSVG from './icons/dots.svg';
+
+import Icon from './Icon.vue';
 
 const app = inject('ServiceContainer');
 const {t} = app.i18n;

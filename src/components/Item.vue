@@ -13,7 +13,7 @@
     @contextmenu.prevent="app.emitter.emit('vf-contextmenu-show', { event: $event, items: ds.getSelected(), target: item })"
   >
     <slot/>
-    <PinSVG class="vuefinder__item--pinned" v-if="app.pinnedFolders.find(pin => pin.path === item.path)"/>
+    <Icon icon="pin" class="vuefinder__item--pinned" v-if="app.pinnedFolders.find(pin => pin.path === item.path)"/>
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 import {inject} from 'vue';
 import ModalPreview from "./modals/ModalPreview.vue";
 import ModalMove from "./modals/ModalMove.vue";
-import PinSVG from "./icons/pin.svg";
+import Icon from './Icon.vue';
 
 const app = inject('ServiceContainer');
 const ds = app.dragSelect;

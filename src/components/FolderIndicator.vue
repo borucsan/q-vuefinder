@@ -1,16 +1,14 @@
 <template>
   <div class="vuefinder__folder-indicator">
     <div class="vuefinder__folder-indicator--icon">
-      <SquareMinusSVG class="vuefinder__folder-indicator--minus" v-if="model" />
-      <SquarePlusSVG class="vuefinder__folder-indicator--plus" v-if="!model" />
+      <Icon icon="minus" class="vuefinder__folder-indicator--minus" v-if="model" />
+      <Icon icon="plus" class="vuefinder__folder-indicator--plus" v-if="!model" />
     </div>
   </div>
 </template>
 
 <script setup>
-import SquarePlusSVG from "./icons/plus.svg";
-import SquareMinusSVG from "./icons/minus.svg";
-
+import Icon from './Icon.vue';
 const model = defineModel();
 
 </script>
