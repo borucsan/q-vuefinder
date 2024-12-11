@@ -6,8 +6,7 @@
 </template>
 
 <script setup>
-import AscSVG from './icons/asc.svg';
-import DescSVG from './icons/desc.svg';
+import Icon from './Icon.vue';
 
 defineProps({direction: String});
 </script>
