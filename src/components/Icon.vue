@@ -1,5 +1,5 @@
 <template>
-    <component :is="component" v-bind="properties" />
+    <component :is="component" v-bind="iconData.iconProps" />
 </template>
 
 <script setup>
@@ -15,31 +15,39 @@ const props = defineProps({
   }
 });
 
-const properties = computed(() => {
-const componentProperties = {};
-    if(iconComponent.iconProp) {
-        componentProperties[iconComponent.iconProp] = props.icon;
-    }
-  return {
-    ...(iconComponent.customProps || {}),
-    ...componentProperties,
-  };
-});
-
-const component = computed(() => {
-    if(!iconComponent.tag || iconComponent.tag === 'svg') {
-        return defineAsyncComponent(svgComponent);
-    } else {
-        return iconComponent.tag;
-    }
-})
-
-const svgComponent = () => {
-    const icon = icons[props.icon];
-    if (!icon) {
+const iconData = computed(() => {
+   let tag = iconComponent.tag ?? 'svg';
+   let icon = icons[props.icon];
+   let iconKey = icon?.iconKey ?? iconComponent.iconKey;
+   let iconProps = {};
+   if (!icon) {
         console.error(`Icon ${props.icon} not found`);
         return null;
     }
-    return icon;
-}
+    iconProps = {...iconComponent.customProps, ...(icon.props ?? {})};
+    if(icon.tag) {
+        console.debug(`Icon ${props.icon} is an object with tag and icon properties`, icon);
+        tag = icon.tag;
+        icon = icon.icon;
+    }
+
+    
+    if(iconKey && icon) {
+        iconProps[iconKey] = icon;
+    }
+    return {
+        tag,
+        icon,
+        iconProps
+    };
+});
+
+const component = computed(() => {
+    const { tag, icon } = iconData.value;
+    if(!tag || tag === 'svg') {
+        return defineAsyncComponent(() => icon);
+    } else {
+        return tag;
+    }
+})
 </script>

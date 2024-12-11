@@ -15,7 +15,7 @@ export default {
 
         options.iconComponent = options.iconComponent ?? {
             tag: 'svg',
-            iconProp: null,
+            iconKey: null,
             customProps: {},
         };
         options.icons = {
